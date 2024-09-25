@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marcar asistencia</title>
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <h1>Marcar asistencia - Grado {{ grado }}</h1>
+
+    <form action="/marcar_asistencia" method="POST">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Almorzo</th>
+            <th>Repitio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for estudiante in estudiantes %}
+          <tr>
+            <td>{{ estudiante.ID }}</td>
+            <td>{{ estudiante.Nombre }}</td>
+            <td>
+              <label for="Almorzo_{{ estudiante.ID }}">
+                <input
+                type="checkbox"
+                id="Almorzo_{{ estudiante.ID }}"
+                name="Almorzo_{{ estudiante.ID }}"
+                onchange="toggleRepitio(this)"
+                {% if estudiante.Almorzo == 'Si' %}checked{% endif %}
+                />
+                Almorzo
+              </label>
+            </td>
+            <td>
+              <label for="Repitio_{{ estudiante.ID }}">
+                <input
+                type="checkbox"
+                id="Repitio_{{  estudiante.ID }}"
+                name="Repitio_{{ estudiante.ID }}"
+                {% if estudiante.Almorzo == 'Si' %}checked{% endif %}
+                disabled
+                />
+                Repitio
+              </label>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="/" id="back-button">
+        <button type="button">Volver</button>
+      </a>
+      <button type="submit">Guardar</button>
+      </form>
+      <script src="../static/main.js" defer></script>
+  </body>
+</html>
+ 
+
+
+
+
+
+    

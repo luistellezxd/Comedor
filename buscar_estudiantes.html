@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar estudiantes</title>
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Comedor estudiantil</h1>
+      <div id="iniciar-jornada-div">
+        <!-- Botón para iniciar la jornada y restablecer la asistencia -->
+        <form action="/iniciar_jornada" method="POST" id="iniciar-jornada-form">
+          <button type="submit" id="iniciar-jornada-btn">Iniciar Jornada</button>
+        </form>
+      </div>
+
+      <h2>Seleccionar Grado</h2>
+      <form action="/listar" method="POST">
+        <label for="grado">Grado:</label>
+        <select name="grado" required title="Select Grado">
+          {% for grado in grados %}
+          <option value="{{ grado }}">{{ grado }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Lista estudiantes</button>
+      </form>
+
+      <form action="/imprimir" method="POST">
+        <label for="grado">Seleccionar grado para imprimir asistencia:</label>
+        <select name="grado" required title="Select Grado">
+          {% for grado in grados %}
+          <option value="{{ grado }}">{{ grado }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Imprimir asistencia del día</button>
+      </form>
+    </main>
+    <script src="../static/main.js"></script>
+  </body>
+</html>
